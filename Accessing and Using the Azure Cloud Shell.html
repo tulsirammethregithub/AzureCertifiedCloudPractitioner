@@ -1,0 +1,118 @@
+Accessing and Using the Azure Cloud Shell
+Introduction
+This hands-on lab will introduce you to Azure Cloud Shell, a web-based virtual terminal that allows you full access to Azure PowerShell and the CLI — right from your browser. There's nothing to install and no plugins — just scripting goodness. We'll take a look at how to set up Cloud Shell and run a few commands in both the Azure CLI and Azure PowerShell. When we're finished, you'll have the knowledge necessary to run Cloud Shell in your own Azure subscription. Our key objective include configuring the Azure Cloud Shell, running sample commands in Azure CLI (PowerShell Environment), creating a Linux virtual machine using the Azure CLI (PowerShell Environment), viewing Azure resources in Azure PowerShell, and removing a Linux virtual machine using Azure PowerShell.
+
+Solution
+Log in to the Azure Portal using the credentials provided on the lab instructions page.
+
+Configure Cloud Shell
+In the Azure Portal, click the Cloud Shell icon (>_) immediately to the right of the search bar.
+In the Cloud Shell welcome menu, click PowerShell.
+In the storage menu, click Show advanced settings.
+Configure the storage settings:
+Use the lab provided Subscription.
+Use Central US for the location.
+Use the lab-provided Resource Group.
+Enter a new, unique name in Storage account and a new, unique name in File Share.
+Click Create storage.
+Execute Azure CLI Commands in the Cloud Shell
+In the Cloud Shell, list the resource groups available in our Azure subscription:
+
+az group list
+List the storage accounts available in our Azure subscription:
+
+az storage account list
+List the virtual machines available in our Azure subscription:
+
+az vm list
+Create a Virtual Machine Using the Azure CLI
+Run the following command, replacing <RG_NAME> with the name of your lab resource group (you can get this by pressing Tab to auto-fill the name into the command if you do not have it copied to the clipboard.):
+    az vm create --name LabVM `
+    --resource-group <RG_NAME> `
+    --public-ip-sku Standard `
+    --image UbuntuLTS `
+    --admin-username azureuser `
+    --generate-ssh-keys
+Run PowerShell Cmdlets in the Cloud Shell
+List the resource groups available in our Azure subscription:
+
+Get-AzResourceGroup
+List the storage accounts available in our Azure subscription:
+
+Get-AzStorageAccount
+List all the virtual machines that now exist in the lab:
+
+Get-AzVM
+List all the resources that now exist in the lab:
+
+Get-AzResource | ft
+Clear the screen:
+
+clear
+Remove the Virtual Machine
+Run the following command, replacing <RESOURCE_GROUP_NAME> with the name of your lab resource group (you can get this by pressing Tab to auto-fill the name into the command):
+
+Remove-AzVM -Name LabVM -ResourceGroupName <RESOURCE_GROUP_NAME>
+Enter Y at the prompt. It may take several minutes to be deleted.
+
+Verify that the virtual machine has been deleted:
+
+Get-AzVM
+Note: In production, other VM related resources would also need deleted (example: NIC, disk). "https://docs.microsoft.com/en-us/azure-stack/user/delete-vm?view=azs-2102&tabs=portal"
+
+Log out:
+
+exit
+Click Quit to close Cloud Shell and return to the Azure Portal.
+
+Conclusion
+Congratulations — you've completed this hands-on lab!
+
+Additional Resources
+Make sure you're logged into the Azure Portal to complete this lab.
+
+When setting up the Azure Cloud Shell:
+
+In the Azure Portal, click the Cloud Shell icon (>_) in the top right corner of the screen.
+In the Cloud Shell welcome menu, click PowerShell.
+In the storage menu, click Show advanced settings.
+Use the lab-provided subscription. Use the existing resource group. Use Central US for the location. Create a new, uniquely named Storage account and a new, uniquely named File Share.
+Click Create storage.
+Helpful Links
+Azure CLI Overview: https://docs.microsoft.com/en-us/cli/azure/?view=a
+Azure CLI Reference: https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest
+Azure PowerShell Overview: https://docs.microsoft.com/en-us/powershell/azure/overview?view=azps-1.6.0
+Quickstart for Bash in Azure Cloud Shell: https://docs.microsoft.com/en-us/azure/cloud-shell/quickstart
+Quickstart for PowerShell in Azure Cloud Shell: https://docs.microsoft.com/en-us/azure/cloud-shell/quickstart-powershell
+
+Learning Objectives
+5 of 5 completed
+
+
+Configure Cloud Shell
+
+In the Azure Portal, click the Cloud Shell icon (>_) in the top right corner of the screen.
+In the Cloud Shell welcome menu, click PowerShell.
+In the storage menu, click Show advanced settings.
+Use the lab-provided subscription. Use the existing resource group. Use Central US for the location. Create a new, uniquely named Storage account and a new, uniquely named File Share.
+Click Create storage.
+
+Execute Azure CLI Commands in the Cloud Shell
+
+Use Azure CLI commands to list the resource groups, storage accounts, virtual machines, and all resources available in our Azure subscription.
+Note the output.
+
+Create a Virtual Machine Using the Azure CLI
+
+Create a virtual machine in the cloud shell, using the actual name of your lab resource group for the resource-group.
+Verify the creation of the virtual machine.
+
+Run PowerShell Cmdlets in the Cloud Shell
+
+Run PowerShell cmdlets to list resource groups, storage accounts, virtual machines, and all resources available in the lab.
+Note the output.
+
+Remove the Virtual Machine
+
+Use a cmdlet to remove the virtual machine, providing the names of the virtual machine and resource group for the -Name and -ResourceGroupName parameters, respectively.
+Verify that the virtual machine has been deleted.
